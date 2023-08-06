@@ -2,11 +2,12 @@
 import os
 import shutil
 code = ['.py' ,'.c' ,'.cpp' ,'.cs' ,'.java' ,'.sql' ,'.js' ,'.r' ,'.html' ,'.css' ,'.ts' ,'.go' ,'.php' ,'.sh' ,'.rb' ,'.scala' ,'.sc' ,'.mat' ,'.sas' ,'.asm' ,'.kt' ,'.rs' ,'.pl' ,'.m' ,'.dart' ,'.swift' ,'.v' ,'.verilog' ,'.vlg' ,'.vh' ,'.ino' ,'.d' ,'.jl' ,'.cu' ,'.vhdl' ,'.vb' ,'.groovy' ,'.gvy' ,'.gy' ,'.gsh' ,'.lua' ,'.ada' ,'.scm' ,'.abap' ,'.hs' ,'.hls' ,'.cbl' ,'.cob' ,'.ex' ,'.exs' ,'.fsx' ,'.fsi' ,'.fs' ,'.lsp' ,'.pas' ,'.f90' ,'.for' ,'.f' ,'.tcl' ,'.clj' ,'.cljs' ,'.pl' ,'.ml' ,'.llg' ,'.erl' ,'.hrl' ,'.fs' ,'.fth' ,'.4th' ,'.f' ,'.forth' ,'.elm' ,'.raku' ,'.rakumod' ,'.rakudoc' ,'.t' ,'.rakutest' ,'.wasm' ,'.coffe' ,'.litcoffee' ,'.e']
-text = ['.txt' ,'.doc' ,'.docx']
+text = ['.txt']
 PDF = ['.pdf']
 image = ['.gif' ,'.png' ,'.jpeg' ,'.jpg' ,'.psd' ,'.xcf' ,'.ai' ,'.cdr' ,'.tif' ,'.tiff' ,'.bmp' ,'.eps' ,'.raw' ,'.cr2' ,'.nef' ,'.orf' ,'.sr2']
 video = ['mp4' ,'.mov' ,'.avi' ,'.flv' ,'.avchd' ,'.mkv' ,'.webm' ,'.wmv' ,'.wmv']
 audio = ['.mp3' ,'.wav' ,'.aiff' ,'.pcm' ,'.aac' ,'.wma' ,'.flac' ,'.alac']
+office = ['.doc' ,'.docx' ,'.pptx' ,'.xlsx' ,'.one' ,'.gslides' ,'.gsheet']
 
 
 # Create a list of all the files
@@ -35,6 +36,9 @@ def chk_folders(files):
 
     if 'Audio' not in files:
         os.mkdir(cwd+'/Audio')
+
+    if 'G Suite-MS Office' not in files:
+        os.mkdir(cwd+'/G Suit-MS Office')
 
 
 # Check file type for each file + Send file to corresponding folders.
@@ -89,13 +93,21 @@ def chk_FileType(files):
             else:
                 pass
 
+        for x in office:
+            if file.lower().endswith(x):
+                directory = f'{cwd}/{file}'
+                destination = f'{cwd}/G Suit-MS Office'
+                shutil.move(directory,destination)
+            else:
+                pass
+
+
         if file.lower().endswith('.exe'):
             pass
 
 
 # Logic
 while __name__ == '__main__':
-    print('Starting')
     chk_folders(files)
     chk_FileType(files)
     break
