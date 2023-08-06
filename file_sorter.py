@@ -37,8 +37,8 @@ def chk_folders(files):
     if 'Audio' not in files:
         os.mkdir(cwd+'/Audio')
 
-    if 'G Suite-MS Office' not in files:
-        os.mkdir(cwd+'/G Suit-MS Office')
+    if 'Google-MS_Office' not in files:
+        os.mkdir(cwd+'/Google-MS_Office')
 
 
 # Check file type for each file + Send file to corresponding folders.
@@ -96,7 +96,7 @@ def chk_FileType(files):
         for x in office:
             if file.lower().endswith(x):
                 directory = f'{cwd}/{file}'
-                destination = f'{cwd}/G Suit-MS Office'
+                destination = f'{cwd}/Google-MS_Office'
                 shutil.move(directory,destination)
             else:
                 pass
